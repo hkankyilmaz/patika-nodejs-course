@@ -129,6 +129,7 @@
                 >NASA on The Commons</a
               >.
             </p>
+            <a onclick="return confirm('Are you sure ?')" href="/posts/delete/<%= post._id %>?_method=DELETE" class="btn btn-danger ml-3 float-right mt-3">Delete Post</a><a href="/posts/edit/<%= post._id %>" class="btn btn-primary  mt-3 float-right">Update Post</a> 
           </div>
         </div>
       </div>
