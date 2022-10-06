@@ -8,7 +8,7 @@ const getPostPage = async (req, res) => {
 };
 
 const getAboutPage = (req, res) => {
-  res.render("add_post");
+  res.render("about");
 };
 
 const getAddPostPage = (req, res) => {
