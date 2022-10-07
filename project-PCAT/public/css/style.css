@@ -98,6 +98,14 @@ p {
   border-bottom: 1px solid white;
   color: white;
 }
+.headerX {
+  background: url("../img/camera.avif");
+  background-position: 30% 15%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  height: 60vh;
+}
 
 .tm-welcome-container {
   position: absolute;
@@ -110,7 +118,7 @@ p {
 }
 
 .tm-welcome-container-inner {
-  margin-top: 100px;
+  margin-top: 130px;
 }
 .tm-welcome-text {
   font-size: 1.6rem;
@@ -193,8 +201,9 @@ p {
 }
 
 .tm-btn-cta {
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  color: black;
+  font-weight: bold;
+  background-color: rgb(255, 255, 255, 0.7);
 }
 
 .tm-btn-cta:before {
@@ -252,7 +261,11 @@ p {
 }
 
 .tm-page-title {
-  font-size: 2.5rem;
+  font-size: 2rem;
+  color: brown;
+}
+hr {
+  margin-bottom: 30px;
 }
 .tm-catalog-item-list {
   justify-content: start;
@@ -667,5 +680,39 @@ video {
 @media (max-width: 419px) {
   .tm-testimonial {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 992px) {
+  .fa-camera {
+    font-size: 1.5rem;
+  }
+  .tm-site-name {
+    font-size: 1em;
+  }
+  .tm-bg-black {
+    padding: 20px;
+    text-align: left;
+    height: auto;
+    width: auto;
+    display: inline-block;
+    border-radius: 5px;
+  }
+  .tm-page-title {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .tm-welcome-text {
+    font-size: 1rem;
+  }
+  .tm-text-primary {
+    font-size: 1rem;
+  }
+  body {
+    font-size: 13px;
+  }
+  .btn {
+    padding: 7px 30px;
+    font-size: 1rem;
   }
 }
