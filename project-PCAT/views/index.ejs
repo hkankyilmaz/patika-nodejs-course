@@ -1,7 +1,7 @@
 <%- include('partials/_header') -%>
   <body>
     <div class="tm-page-wrap mx-auto">
-      <div class="position-relative">
+      <div class="position-relative headerX">
         <%- include('partials/_navigation') -%>
         <div class="tm-welcome-container text-center text-white">
           <div class="tm-welcome-container-inner">
@@ -35,36 +35,9 @@
           <main>
             <div class="row">
               <div class="col-12">
-                <h2 class="tm-page-title mb-4">Our Video Catalog</h2>
-                <div class="tm-categories-container mb-5">
-                  <h3 class="tm-text-primary tm-categories-text">
-                    Categories:
-                  </h3>
-                  <ul class="nav tm-category-list">
-                    <li class="nav-item tm-category-item">
-                      <a href="#" class="nav-link tm-category-link active"
-                        >All</a
-                      >
-                    </li>
-                    <li class="nav-item tm-category-item">
-                      <a href="#" class="nav-link tm-category-link"
-                        >Drone Shots</a
-                      >
-                    </li>
-                    <li class="nav-item tm-category-item">
-                      <a href="#" class="nav-link tm-category-link">Nature</a>
-                    </li>
-                    <li class="nav-item tm-category-item">
-                      <a href="#" class="nav-link tm-category-link">Actions</a>
-                    </li>
-                    <li class="nav-item tm-category-item">
-                      <a href="#" class="nav-link tm-category-link">Featured</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                <h2 class="tm-page-title mb-4">Our Photo Catalog</h2>
+               </div>
             </div>
-
             <div class="row tm-catalog-item-list">
               <% for(let i =0; i<photos.length; i++) { %>
               <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
@@ -72,13 +45,14 @@
                   <img
                     src="<%= photos[i].image%>"
                     alt="Image"
-                    class="img-fluid tm-catalog-item-img"
+                    width='100%'
+                    height='200'
                    />
                   <a
                     href= "/photos/<%= photos[i]._id %>""
                     class="position-absolute tm-img-overlay"
                   >
-                    <i class="fas fa-play tm-overlay-icon"></i>
+                    <i class="fas fa-search tm-overlay-icon"></i>
                   </a>
                 </div>
                 <div class="p-4 tm-bg-gray tm-catalog-item-description">
@@ -95,85 +69,35 @@
 
             <!-- Catalog Paging Buttons -->
             <div>
-              <ul class="nav tm-paging-links">
-                <li class="nav-item active">
-                  <a href="#" class="nav-link tm-paging-link">1</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link tm-paging-link">2</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link tm-paging-link">3</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link tm-paging-link">4</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link tm-paging-link">></a>
-                </li>
-              </ul>
+              <% if (pages > 0) { %>
+                <ul class="nav tm-paging-links">
+                  <% for (i=1; i <=pages; i++) { %>
+                    <%   if (i == current) { %>
+                      <li class="nav-item active pagi"><a href="/?page=<%= i %>" class="nav-link tm-paging-link"><%= i %></a></li>
+                    <% } else if (i < pages) { %>
+                      <li class="nav-item pagi"><a href="/?page=<%= i %>" class="nav-link tm-paging-link"><%= i %></a></li>
+                    <%  } else { %>
+                      <li class="nav-item pagi"><a href="/?page=<%= i %>" class="nav-link tm-paging-link">></a></li>
+                    <%  } %>
+                  <%  } %>
+                </ul>
+              <% } %>
             </div>
           </main>
           <%- include('partials/_footer') -%>
     <script>
-      function setVideoSize() {
-        const vidWidth = 1920;
-        const vidHeight = 1080;
-        let windowWidth = window.innerWidth;
-        let newVidWidth = windowWidth;
-        let newVidHeight = (windowWidth * vidHeight) / vidWidth;
-        let marginLeft = 0;
-        let marginTop = 0;
-
-        if (newVidHeight < 500) {
-          newVidHeight = 500;
-          newVidWidth = (newVidHeight * vidWidth) / vidHeight;
-        }
-
-        if (newVidWidth > windowWidth) {
-          marginLeft = -((newVidWidth - windowWidth) / 2);
-        }
-
-        if (newVidHeight > 720) {
-          marginTop = -((newVidHeight - $("#tm-video-container").height()) / 2);
-        }
-
-        const tmVideo = $("#tm-video");
-
-        tmVideo.css("width", newVidWidth);
-        tmVideo.css("height", newVidHeight);
-        tmVideo.css("margin-left", marginLeft);
-        tmVideo.css("margin-top", marginTop);
-      }
-
-      $(document).ready(function () {
-        /************** Video background *********/
-
-        setVideoSize();
-
-        // Set video background size based on window size
-        let timeout;
-        window.onresize = function () {
-          clearTimeout(timeout);
-          timeout = setTimeout(setVideoSize, 100);
-        };
-
-        // Play/Pause button for video background
-        const btn = $("#tm-video-control-button");
-
-        btn.on("click", function (e) {
-          const video = document.getElementById("tm-video");
-          $(this).removeClass();
-
-          if (video.paused) {
-            video.play();
-            $(this).addClass("fas fa-pause");
-          } else {
-            video.pause();
-            $(this).addClass("fas fa-play");
-          }
-        });
-      });
+     
+      document.querySelectorAll('.pagi').forEach((item)=> {
+        const hed = document.querySelector('.headerX');
+        item.addEventListener('click',(e)=> {
+            
+            heightElement = hed.offsetHeight;
+            console.log(heightElement)
+            window.scrollTo(0,heightElement);
+            
+        })
+      })
+  
     </script>
   </body>
 </html>
